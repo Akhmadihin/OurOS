@@ -20,6 +20,12 @@ section .text
 global _start
 extern kernel_main
 
+global idt_load
+idt_load:
+    mov eax, [esp + 4]
+    lidt [eax]
+    ret
+
 _start:
     ; Set up stack
     mov esp, stack_top
